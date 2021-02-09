@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     // Code 👇 gets executed when the App.js loads
     database.collection("todos").orderBy("timestamp", "desc").onSnapshot(snapshot => {
-      setToDos(snapshot.docs.map(doc => doc.data().title))
+      setToDos(snapshot.docs.map(doc => ({ id : doc.id, todoTitle : doc.data().title })))
     })
   }, [])
 
