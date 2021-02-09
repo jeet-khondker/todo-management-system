@@ -3,6 +3,7 @@ import { useState } from "react"
 import { Button, FormControl, InputLabel, Input } from '@material-ui/core';
 
 import './App.css';
+import ToDo from "./components/ToDo";
 
 function App() {
 
@@ -48,7 +49,7 @@ function App() {
 
       <ul>
         { todos.map( todo => (
-          <li>{ todo }</li>
+          <ToDo title={ todo } />
         ) ) }
       </ul>
     </div>
