@@ -28,7 +28,10 @@ function App() {
 
     event.preventDefault() /* Stops the Browser REFRESHING Functionality */
 
-    setToDos([ ...todos, input ])
+    database.collection("todos").add({
+      title : input
+    })
+    
     setInput('') /* Clear up the input field */
   }
 
