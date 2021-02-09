@@ -6,6 +6,7 @@ import './App.css';
 import ToDo from "./components/ToDo";
 
 import database from "./firebase"
+import firebase from "firebase"
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
   // When the application loads, wee need to listen to database and fetch new todos as they get added/removed
   useEffect(() => {
     // Code 👇 gets executed when the App.js loads
-    database.collection("todos").onSnapshot(snapshot => {
+    database.collection("todos").orderBy("timestamp", "desc").onSnapshot(snapshot => {
       setToDos(snapshot.docs.map(doc => doc.data().title))
     })
   }, [])
@@ -29,7 +30,8 @@ function App() {
     event.preventDefault() /* Stops the Browser REFRESHING Functionality */
 
     database.collection("todos").add({
-      title : input
+      title : input,
+      timestamp : firebase.firestore.FieldValue.serverTimestamp() // Timestamp of Firebase Server 
     })
     
     setInput('') /* Clear up the input field */
