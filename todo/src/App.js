@@ -1,21 +1,27 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import { Button, FormControl, InputLabel, Input } from '@material-ui/core';
 
 import './App.css';
 import ToDo from "./components/ToDo";
 
+import database from "./firebase"
+
 function App() {
 
   // JavaScript 👇
 
-  const [todos, setToDos] = useState([
-    "Work on the TeamLab Challenge",
-    "Workout in Gym",
-    "Learn ReactJS",
-  ])
+  const [todos, setToDos] = useState([])
 
   const [input, setInput] = useState('')
+
+  // When the application loads, wee need to listen to database and fetch new todos as they get added/removed
+  useEffect(() => {
+    // Code 👇 gets executed when the App.js loads
+    database.collection("todos").onSnapshot(snapshot => {
+      setToDos(snapshot.docs.map(doc => doc.data().title))
+    })
+  }, [])
 
   // Function : Add ToDo Task Item
   const addToDo = (event) => {
