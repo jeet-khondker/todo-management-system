@@ -1,0 +1,11 @@
+body {
+    margin: 0 auto;
+    width: 95%;
+    background-color: rgb(218, 218, 218);
+}
+.todo__list {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid rgb(194, 194, 194);
+    justify-content: center;
+}
