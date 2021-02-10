@@ -72,7 +72,7 @@ function ToDo(props) {
 
             <List className="todo__list">
                 <ListItem>
-                    <ListItemText primary={ props.title.todoTitle } secondary="Deadline" />
+                    <ListItemText primary={ props.title.todoTitle } />
                     <Button onClick={ event => setOpen(true) } variant="contained" color="primary" startIcon={ <EditIcon /> }>Edit</Button>
                     &emsp;
                     <Button 
